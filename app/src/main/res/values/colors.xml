@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="icons">#FF1E1E1E</color>
+    <color name="borderSelFil">#FF525252</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="mOrange1buttons">#FFF9D5A7</color>
+    <color name="mOrange2background">#FFFFF9F1</color>
+    <color name="mOrange3screenMenu">#FFFFECD4</color>
+    <color name="sOrange1Login">#FFBFA17A</color>
+    <color name="sOrange2ContinueSign">#FFD0C3B2</color>
+    <color name="sOrange3screenMenuAndClickIcon">#FFEBC595</color>
 </resources>
