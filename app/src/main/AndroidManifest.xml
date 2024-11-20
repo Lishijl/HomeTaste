@@ -13,6 +13,24 @@
         android:theme="@style/Theme.HomeTaste"
         tools:targetApi="31">
         <activity
+            android:name=".Help"
+            android:exported="false" />
+        <activity
+            android:name=".Settings"
+            android:exported="false" />
+        <activity
+            android:name=".MyRecipies"
+            android:exported="false" />
+        <activity
+            android:name=".Filter"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
