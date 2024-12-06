@@ -19,40 +19,65 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/libro"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="40dp"
-            android:src="@drawable/libro" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:text="Mis Recetas (8)"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_marginStart="20dp"
+            android:src="@drawable/regresar" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            app:cardCornerRadius="25dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/lupa" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="35dp"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="Mis Recetas (8)"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/cancelar" />
+        </androidx.cardview.widget.CardView>
+
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginStart="90dp"
-            android:src="@drawable/lupa" />
+            android:layout_marginStart="15dp"
+            android:src="@drawable/filtro" />
 
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/croqueta"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginHorizontal="40dp"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/mOrange3screenMenu"
         app:cardCornerRadius="6dp"
@@ -61,12 +86,11 @@
         app:layout_constraintTop_toBottomOf="@id/header">
 
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nombreReceta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -76,7 +100,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/descripcion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -84,18 +107,22 @@
                 android:text="Bechamel, jamoncitos..." />
 
             <TextView
-                android:id="@+id/tiempo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:text="Tiempo: 25 min" />
 
             <TextView
-                android:id="@+id/dificultad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:text="Dificultad: Media" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Raciones: 4" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -103,34 +130,99 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/racion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
-                    android:text="Raciones: 4" />
+                    android:text="Lorena"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/editar"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginStart="55dp"
-                    android:src="@drawable/lapiz" />
+                    android:layout_marginStart="65dp"
+                    android:src="@drawable/like" />
 
                 <ImageView
-                    android:id="@+id/eliminar"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/eliminar" />
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/compartir" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/guardar" />
 
             </LinearLayout>
         </LinearLayout>
 
         <ImageView
-            android:layout_width="130dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:src="@drawable/croquetas" />
 
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/opcionesCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/mOrange2background"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
+                    android:text="Categorias:" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="91dp"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rb_con_ingredientes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Con ingredientes"/>
+
+                <RadioButton
+                    android:id="@+id/rb_sin_ingredientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:checked="true"
+                    app:buttonTint="@color/black"
+                    android:text="Sin ingredientes"/>
+
+            </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <fragment
