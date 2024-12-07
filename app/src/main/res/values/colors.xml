@@ -10,4 +10,5 @@
     <color name="sOrange1Login">#FFBFA17A</color>
     <color name="sOrange2ContinueSign">#FFD0C3B2</color>
     <color name="sOrange3screenMenuAndClickIcon">#FFEBC595</color>
+    <color name="textColor">#795548</color>
 </resources>
