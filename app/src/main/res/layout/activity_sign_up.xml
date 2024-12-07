@@ -27,8 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="Registrate / Inicia sesión o Continúa como invitado"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -42,8 +41,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
                 android:text="jmiguel94@gmail.com"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -85,7 +83,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="50dp"
             android:backgroundTint="@color/mOrange1buttons"
-            android:text="Iniciar sesión"
+            android:text="@string/registro"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -99,7 +97,8 @@
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/sOrange1Login"
                 android:text="Iniciar"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="goToLogin"/>
 
             <Button
                 android:layout_width="120dp"
@@ -108,7 +107,8 @@
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/sOrange2ContinueSign"
                 android:text="Continuar"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#4A4459"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -16,11 +16,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="113dp"
+            android:layout_width="137dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="Bienvenido de nuevo!"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -28,8 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="Inicia sesión o Registrate para cerar la cuenta"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -43,8 +42,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="17dp"
                 android:text="jmiguel94@gmail.com"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -78,8 +76,10 @@
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/sOrange2ContinueSign"
-            android:text="Registrarse"
-            android:textStyle="bold" />
+            android:text="@string/registro"
+            android:textStyle="bold"
+            android:textColor="#4A4459"
+            android:onClick="goToSignUp"/>
 
     </LinearLayout>
 

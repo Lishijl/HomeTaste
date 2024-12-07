@@ -5,7 +5,102 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mOrange2background"
+    android:padding="60dp"
     tools:context=".MainActivity">
 
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="top"
+            android:text="@string/men_provisional"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="291dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="@string/men_d_acc_s_r_pid_a_les_pantalles_per_tornar_aqu_clic_a_la_icona_de_retroc_s"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/mOrange1buttons"
+            android:onClick="goToLogin"
+            android:text="@string/login"
+            android:textColor="#795548" />
+
+        <Button
+            android:id="@+id/signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/mOrange1buttons"
+            android:onClick="goToSignUp"
+            android:text="@string/sign_up"
+            android:textColor="#795548" />
+
+        <Button
+            android:id="@+id/filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/mOrange1buttons"
+            android:onClick="goToFilter"
+            android:text="@string/filter"
+            android:textColor="#795548" />
+
+        <Button
+            android:id="@+id/myRecipies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/mOrange1buttons"
+            android:onClick="goToMyRecipies"
+            android:text="@string/my_recipies"
+            android:textColor="#795548" />
+
+        <Button
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/mOrange1buttons"
+            android:onClick="goToSettings"
+            android:text="@string/settings"
+            android:textColor="#795548" />
+
+        <Button
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/mOrange1buttons"
+            android:onClick="goToHelp"
+            android:text="@string/help"
+            android:textColor="#795548" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

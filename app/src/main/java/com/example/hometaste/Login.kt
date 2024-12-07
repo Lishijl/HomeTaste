@@ -1,5 +1,6 @@
 package com.example.hometaste
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -17,5 +18,10 @@ class Login : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    fun goToSignUp(view: View) {
+        val iSignUp = Intent(this, SignUp::class.java)
+        startActivity(iSignUp)
     }
 }
