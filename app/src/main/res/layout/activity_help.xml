@@ -7,4 +7,298 @@
     android:layout_height="match_parent"
     tools:context=".Help">
 
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="309dp"
+        android:layout_height="204dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="162dp"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/helpsearch" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="245dp"
+        android:layout_height="213dp"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="20dp"
+        android:elevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/helpfiltrar" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="371dp"
+        android:layout_height="213dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="20dp"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/helpitem" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="411dp"
+        android:layout_height="192dp"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/helpmenu" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/header"
+        android:name="com.example.hometaste.header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_header" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/volver_atr_s"
+            android:src="@drawable/regresar" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            app:cardCornerRadius="25dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:contentDescription="@string/buscar"
+                android:src="@drawable/lupa" />
+
+            <EditText
+                android:layout_width="194dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="35dp"
+                android:backgroundTint="@android:color/transparent"
+                android:hint="@string/buscarsearch"
+                android:textColor="@color/black"
+                android:textColorHint="#757575"
+                android:textSize="18sp"
+                tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="15dp"
+                android:contentDescription="@string/quitar"
+                android:src="@drawable/cancelar" />
+        </androidx.cardview.widget.CardView>
+
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:contentDescription="@string/filtrar"
+            android:src="@drawable/filtro" />
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/croqueta"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/mOrange3screenMenu"
+        app:cardCornerRadius="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="TextSizeCheck">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/croquetas_de_jam_n"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/bechamel_jamoncitos"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/tiempo_25_min" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/dificultad_media" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/raciones_4" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/lorena"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="65dp"
+                    android:contentDescription="@string/me_gusta"
+                    android:src="@drawable/like" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/compartir_enlace"
+                    android:src="@drawable/compartir" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/guardar_receta"
+                    android:src="@drawable/guardar" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:contentDescription="@string/croquetasimg"
+            android:src="@drawable/croquetas" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/opcionesCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/mOrange2background"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="209dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/categorias"
+                    android:textColor="@color/borderSelFil"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="13dp"
+                    tools:ignore="VisualLintBounds,TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rb_con_ingredientes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/con_ingredientes"
+                    android:textColor="@color/borderSelFil"
+                    tools:ignore="TextContrastCheck" />
+
+                <RadioButton
+                    android:id="@+id/rb_sin_ingredientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="@string/sin_ingredientes"
+                    android:textColor="@color/borderSelFil"
+                    app:buttonTint="@color/black" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/footer"
+        android:name="com.example.hometaste.MenuNavegacio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout="@layout/fragment_menu_navegacio" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
