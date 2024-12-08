@@ -42,6 +42,16 @@
             android:textSize="16sp" />
 
         <Button
+            android:id="@+id/signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/mOrange1buttons"
+            android:onClick="goToSignUp"
+            android:text="@string/sign_up"
+            android:textColor="#795548" />
+
+        <Button
             android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,13 +62,13 @@
             android:textColor="#795548" />
 
         <Button
-            android:id="@+id/signUp"
+            android:id="@+id/help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:backgroundTint="@color/mOrange1buttons"
-            android:onClick="goToSignUp"
-            android:text="@string/sign_up"
+            android:onClick="goToHelp"
+            android:text="@string/help"
             android:textColor="#795548" />
 
         <Button
@@ -89,16 +99,6 @@
             android:backgroundTint="@color/mOrange1buttons"
             android:onClick="goToSettings"
             android:text="@string/settings"
-            android:textColor="#795548" />
-
-        <Button
-            android:id="@+id/help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:backgroundTint="@color/mOrange1buttons"
-            android:onClick="goToHelp"
-            android:text="@string/help"
             android:textColor="#795548" />
 
     </LinearLayout>
