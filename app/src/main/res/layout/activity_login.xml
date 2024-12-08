@@ -19,16 +19,18 @@
             android:layout_width="137dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Bienvenido de nuevo!"
+            android:text="@string/bienvenido_de_nuevo"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck" />
 
         <TextView
             android:layout_width="211dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Inicia sesión o Registrate para cerar la cuenta"
-            android:textSize="18sp"/>
+            android:text="@string/inicia_sesi_n_o_registrate_para_cerar_la_cuenta"
+            android:textSize="18sp"
+            tools:ignore="TextSizeCheck" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -41,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="17dp"
-                android:text="jmiguel94@gmail.com"
+                android:text="@string/jmiguel94_gmail_com"
                 android:textSize="18sp"/>
         </androidx.cardview.widget.CardView>
 
@@ -58,9 +60,11 @@
                 android:layout_marginTop="17dp"
                 android:backgroundTint="@android:color/transparent"
                 android:inputType="textPassword"
-                android:text="jmiguel94@gmail.com"
+                android:minHeight="48dp"
+                android:text="@string/jmiguel94_gmail_com"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
         </androidx.cardview.widget.CardView>
 
         <Button
@@ -68,8 +72,9 @@
             android:layout_height="60dp"
             android:layout_marginTop="50dp"
             android:backgroundTint="@color/mOrange1buttons"
-            android:text="Iniciar sesión"
-            android:textStyle="bold" />
+            android:text="@string/iniciar_sesi_n"
+            android:textStyle="bold"
+            tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 
         <Button
             android:layout_width="match_parent"
@@ -79,7 +84,8 @@
             android:text="@string/registro"
             android:textStyle="bold"
             android:textColor="#4A4459"
-            android:onClick="goToSignUp"/>
+            android:onClick="goToSignUp"
+            tools:ignore="VisualLintButtonSize" />
 
     </LinearLayout>
 

@@ -13,10 +13,12 @@
         android:layout_height="204dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="162dp"
+        android:contentDescription="@string/ayudabuscador"
         android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/helpsearch" />
+        app:srcCompat="@drawable/helpsearch"
+        tools:ignore="VisualLintBounds" />
 
     <ImageView
         android:id="@+id/imageView12"
@@ -24,10 +26,12 @@
         android:layout_height="213dp"
         android:layout_marginStart="175dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/ayudafiltraje"
         android:elevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/helpfiltrar" />
+        app:srcCompat="@drawable/helpfiltrar"
+        tools:ignore="VisualLintBounds" />
 
     <ImageView
         android:id="@+id/imageView15"
@@ -36,6 +40,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="216dp"
         android:layout_marginEnd="20dp"
+        android:contentDescription="@string/ayudaitem"
         android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -47,6 +52,7 @@
         android:id="@+id/imageView14"
         android:layout_width="411dp"
         android:layout_height="192dp"
+        android:contentDescription="@string/ayudamenu"
         android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +61,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/header"
-        android:name="com.example.hometaste.header"
+        android:name="com.example.hometaste.Header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -150,7 +156,8 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/croquetas_de_jam_n"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -255,7 +262,8 @@
                     android:layout_marginTop="15dp"
                     android:text="@string/categorias"
                     android:textColor="@color/borderSelFil"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:ignore="TextContrastCheck" />
 
                 <Spinner
                     android:layout_width="154dp"

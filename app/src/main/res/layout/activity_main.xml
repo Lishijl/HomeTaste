@@ -38,7 +38,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginBottom="40dp"
             android:gravity="center"
-            android:text="@string/men_d_acc_s_r_pid_a_les_pantalles_per_tornar_aqu_clic_a_la_icona_de_retroc_s"
+            android:text="@string/men_de_acceso_r_pido_a_las_pantallas_para_volver_aqu_clic_al_retroceso_del_sistema"
             android:textSize="16sp" />
 
         <Button

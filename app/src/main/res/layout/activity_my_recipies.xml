@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/header"
-        android:name="com.example.hometaste.header"
+        android:name="com.example.hometaste.Header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,14 +27,16 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="40dp"
-            android:src="@drawable/libro" />
+            android:contentDescription="@string/misrecetas"
+            android:src="@drawable/libro"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:text="Mis Recetas (8)"
+            android:text="@string/mis_recetas_8"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -44,6 +46,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginStart="90dp"
+            android:contentDescription="@string/buscador"
             android:src="@drawable/lupa" />
 
     </LinearLayout>
@@ -63,7 +66,8 @@
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="TextSizeCheck">
 
             <TextView
                 android:id="@+id/nombreReceta"
@@ -71,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="Croquetas de jamón"
+                android:text="@string/croquetas_de_jam_n"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -81,21 +85,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:text="Bechamel, jamoncitos..." />
+                android:text="@string/bechamel_jamoncitos" />
 
             <TextView
                 android:id="@+id/tiempo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="Tiempo: 25 min" />
+                android:text="@string/tiempo_25_min" />
 
             <TextView
                 android:id="@+id/dificultad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="Dificultad: Media" />
+                android:text="@string/dificultad_media" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -107,19 +111,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:text="Raciones: 4" />
+                    android:text="@string/raciones_4" />
 
                 <ImageView
                     android:id="@+id/editar"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="55dp"
+                    android:contentDescription="@string/editar"
                     android:src="@drawable/lapiz" />
 
                 <ImageView
                     android:id="@+id/eliminar"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+                    android:contentDescription="@string/eliminar"
                     android:src="@drawable/eliminar" />
 
             </LinearLayout>
@@ -129,6 +135,7 @@
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:contentDescription="@string/croquetasimg"
             android:src="@drawable/croquetas" />
 
     </androidx.cardview.widget.CardView>
@@ -139,11 +146,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="90dp"
+        android:contentDescription="@string/crearreceta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/create" />
+        app:srcCompat="@drawable/create"
+        tools:ignore="ImageContrastCheck" />
 
     <fragment
+        android:id="@+id/menu_nav"
         android:name="com.example.hometaste.MenuNavegacio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

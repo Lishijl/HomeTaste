@@ -21,16 +21,20 @@
             android:layout_height="40dp"
             android:layout_marginEnd="95dp"
             android:clickable="true"
+            android:contentDescription="@string/home"
             android:focusable="true"
-            android:src="@drawable/home" />
+            android:src="@drawable/home"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageView
             android:id="@+id/lupa"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:clickable="true"
+            android:contentDescription="@string/buscador"
             android:focusable="true"
-            android:src="@drawable/lupa" />
+            android:src="@drawable/lupa"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageView
             android:id="@+id/libro"
@@ -38,8 +42,10 @@
             android:layout_height="40dp"
             android:layout_marginStart="95dp"
             android:clickable="true"
+            android:contentDescription="@string/misrecetas"
             android:focusable="true"
-            android:src="@drawable/libro" />
+            android:src="@drawable/libro"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
 

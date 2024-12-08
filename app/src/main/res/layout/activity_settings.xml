@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/header"
-        android:name="com.example.hometaste.header"
+        android:name="com.example.hometaste.Header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,21 +20,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/libro"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="40dp"
-            android:src="@drawable/ajustes" />
+            android:contentDescription="@string/ajustes"
+            android:src="@drawable/ajustes"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:text="Ajustes"
+            android:text="@string/ajustes"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -58,8 +61,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Notificaciones: "
                 android:layout_gravity="center_vertical"
+                android:text="@string/notificaciones"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -71,7 +74,8 @@
 
             <com.google.android.material.materialswitch.MaterialSwitch
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="DuplicateSpeakableTextCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -83,7 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Idioma: "
+                android:text="@string/idioma"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -95,7 +99,8 @@
 
             <Spinner
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                tools:ignore="TouchTargetSizeCheck,VisualLintBounds" />
 
         </LinearLayout>
 
@@ -108,7 +113,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tamaño de letras: "
+                android:text="@string/tama_o_de_letras"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -120,7 +125,8 @@
 
             <Spinner
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                tools:ignore="TouchTargetSizeCheck,VisualLintBounds" />
         </LinearLayout>
 
         <LinearLayout
@@ -132,7 +138,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Notificaciones: "
+                android:text="@string/modo_nocturno"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -155,10 +161,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
         android:backgroundTint="@color/mOrange1buttons"
-        android:text="Guardar preferencias"
+        android:text="@string/guardar_preferencias"
         app:layout_constraintBottom_toTopOf="@id/footer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
 
     <fragment
