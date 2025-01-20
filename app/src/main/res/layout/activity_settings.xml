@@ -162,18 +162,20 @@
         android:layout_marginBottom="80dp"
         android:backgroundTint="@color/mOrange1buttons"
         android:text="@string/guardar_preferencias"
-        app:layout_constraintBottom_toTopOf="@id/footer"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck" />
 
 
-    <fragment
-        android:id="@+id/footer"
-        android:name="com.example.hometaste.MenuNavegacio"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/mOrange1buttons"
+        app:menu="@menu/bottom_navegation"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout="@layout/fragment_menu_navegacio" />
+        app:itemIconSize="40dp"
+        app:labelVisibilityMode="unlabeled"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
