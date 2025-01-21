@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.HomeTaste" parent="Base.Theme.HomeTaste" />
+    
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFF9F1</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_splash</item>
+        <!-- Duracición de la animación-->
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.HomeTaste</item>
+    </style>
 </resources>
