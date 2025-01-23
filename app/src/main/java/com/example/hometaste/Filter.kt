@@ -17,7 +17,7 @@ class Filter : AppCompatActivity() {
         this.enableEdgeToEdge()
         binding = ActivityFilterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.bottomNavigationView.selectedItemId = R.id.buscar
         binding.bottomNavigationView.setOnItemSelectedListener(bottomNavListener)
     }
 

@@ -19,7 +19,7 @@ class MyRecipies : AppCompatActivity() {
         this.enableEdgeToEdge()
         binding = ActivityMyRecipiesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.bottomNavigationView.selectedItemId = R.id.recetas
         binding.bottomNavigationView.setOnItemSelectedListener(bottomNavListener)
     }
 

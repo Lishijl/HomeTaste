@@ -17,7 +17,7 @@ class Help : AppCompatActivity() {
         this.enableEdgeToEdge()
         binding = ActivityHelpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.bottomNavigationView.selectedItemId = R.id.buscar
         binding.bottomNavigationView.setOnItemSelectedListener(bottomNavListener)
     }
 
