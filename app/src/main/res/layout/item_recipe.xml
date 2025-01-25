@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="140dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="5dp"
+    android:backgroundTint="@color/mOrange3screenMenu"
+    android:orientation="horizontal"
+    app:cardCornerRadius="8dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="210dp"
+        android:layout_height="match_parent"
+        android:padding="16.5dp">
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/recipeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/croquetas_de_jam_n"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/recipeDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bechamel_jamoncitos"
+                android:textSize="14dp" />
+            <TextView
+                android:id="@+id/recipeTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tiempo_25_min"
+                android:textSize="14dp" />
+            <TextView
+                android:id="@+id/recipeSkillLvl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dificultad_media"
+                android:textSize="14dp" />
+            <TextView
+                android:id="@+id/recipeServing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="@string/raciones_4"
+                android:textSize="14dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-3dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <ImageButton
+                android:id="@+id/editar"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="0dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/editar"
+                android:scaleType="centerCrop"
+                android:src="@drawable/lapiz" />
+            <ImageButton
+                android:id="@+id/eliminar"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/eliminar"
+                android:scaleType="centerCrop"
+                android:src="@drawable/eliminar" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        app:srcCompat="@drawable/croquetas" />
+</androidx.cardview.widget.CardView>
