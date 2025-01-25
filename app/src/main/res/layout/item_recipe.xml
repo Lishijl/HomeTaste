@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
     android:layout_height="140dp"
     android:layout_gravity="center_horizontal"
@@ -30,30 +29,30 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/recipeDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bechamel_jamoncitos"
-                android:textSize="14dp" />
-            <TextView
                 android:id="@+id/recipeTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tiempo_25_min"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/recipeSkillLvl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dificultad_media"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/recipeDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bechamel_jamoncitos"
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/recipeServing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:text="@string/raciones_4"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -86,5 +85,6 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:contentDescription="@string/imagenreceta"
         app:srcCompat="@drawable/croquetas" />
 </androidx.cardview.widget.CardView>
