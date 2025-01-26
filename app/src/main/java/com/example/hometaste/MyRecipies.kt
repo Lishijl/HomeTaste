@@ -66,4 +66,7 @@ class MyRecipies : AppCompatActivity() {
         }
         return false
     }
+    // considerar si usar con API
+    fun searchRecipe(view: View) {
+    }
 }

@@ -24,4 +24,9 @@ class SignUp : AppCompatActivity() {
         val iLogin = Intent(this, Login::class.java)
         startActivity(iLogin)
     }
+
+    fun goToFilter(view: View) {
+        val iFilter = Intent(this, Filter::class.java)
+        startActivity(iFilter)
+    }
 }

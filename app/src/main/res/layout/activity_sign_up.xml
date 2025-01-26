@@ -111,6 +111,7 @@
                 android:text="@string/continuar"
                 android:textStyle="bold"
                 android:textColor="#4A4459"
+                android:onClick="goToFilter"
                 tools:ignore="ButtonStyle" />
         </LinearLayout>
 

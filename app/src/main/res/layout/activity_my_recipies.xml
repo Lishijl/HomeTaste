@@ -42,106 +42,17 @@
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
-
-        <ImageView
+        <ImageButton
+            android:id="@+id/buscar"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:layout_marginStart="105dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:onClick="searchRecipe"
             android:contentDescription="@string/buscador"
-            android:src="@drawable/lupa" />
+            android:src="@drawable/lupa"/>
     </LinearLayout>
-
-    <!--
-    <androidx.cardview.widget.CardView
-        android:id="@+id/croqueta"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/mOrange3screenMenu"
-        app:cardCornerRadius="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header">
-
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:ignore="TextSizeCheck">
-
-            <TextView
-                android:id="@+id/nombreReceta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/croquetas_de_jam_n"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/descripcion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/bechamel_jamoncitos" />
-
-            <TextView
-                android:id="@+id/tiempo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="@string/tiempo_25_min" />
-
-            <TextView
-                android:id="@+id/dificultad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="@string/dificultad_media" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/racion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:text="@string/raciones_4" />
-
-                <ImageView
-                    android:id="@+id/editar"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginStart="55dp"
-                    android:contentDescription="@string/editar"
-                    android:src="@drawable/lapiz" />
-
-                <ImageView
-                    android:id="@+id/eliminar"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:contentDescription="@string/eliminar"
-                    android:src="@drawable/eliminar" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:contentDescription="@string/croquetasimg"
-            android:src="@drawable/croquetas" />
-    </androidx.cardview.widget.CardView>
-    -->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipesRecyclerView"
         android:layout_width="wrap_content"
@@ -152,18 +63,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header"
         app:layout_constraintVertical_bias="0.035" />
-
-    <ImageView
-        android:id="@+id/imageView"
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:elevation="5dp"
         android:contentDescription="@string/crearreceta"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/create"
-        tools:ignore="ImageContrastCheck" />
+        tools:ignore="ImageContrastCheck"
+        />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
