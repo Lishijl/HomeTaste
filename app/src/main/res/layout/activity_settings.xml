@@ -8,7 +8,7 @@
     android:background="#FFF9F1"
     tools:context=".Settings">
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/header"
         android:name="com.example.hometaste.Header"
         android:layout_width="match_parent"
