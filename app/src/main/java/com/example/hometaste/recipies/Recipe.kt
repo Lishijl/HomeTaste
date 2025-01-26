@@ -19,10 +19,10 @@ data class Recipe (
 class RecipiesProvider{
     companion object {
         val RecipesList:List<Recipe> = listOf(
-            Recipe(1, "Croquetas de jamón", "Bechamel, jamoncitos...", 25, "Media", 4,
+            Recipe(1, "Croquetas de jamón", "Bechamel, jamoncitos, pan rallado", 25, "Media", 4,
                 R.drawable.croquetas
             ),
-            Recipe(2, "Margherita", "Harina, tomate, mozzarella...", 45, "Fácil", 2,
+            Recipe(2, "Margherita", "Harina, tomate, mozzarella, orégano", 45, "Fácil", 2,
                 R.drawable.margherita
             )
         )
