@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.hometaste.data.RecipeAPI
 import com.example.hometaste.databinding.ActivityMyRecipiesBinding
+import com.example.hometaste.recipies.Recipe
 import com.example.hometaste.recipies.RecipeAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +28,8 @@ class MyRecipies : AppCompatActivity() {
     // declarem dos variables per controlar el RV
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RecipeAdapter
+
+    private val listRecipies = mutableListOf<Recipe>()
 
     private lateinit var listSize: TextView
 
