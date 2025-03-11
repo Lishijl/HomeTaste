@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -65,6 +66,65 @@ class RecipeAdapter(var llistatReceptes: MutableList<Recipe>,
 
         holder.binding.recipeImage.setOnClickListener {
             this.imageClick?.invoke(holder, recipe, position)
+        }
+
+        holder.binding.editar.setOnClickListener {
+            showEditDialog(holder.itemView.context, recipe) { updatedRecipe ->
+                updateRecipeInAPI(updatedRecipe, position)
+            }
+        }
+    }
+
+    // Mostrar ventanna de editar
+    private fun showEditDialog(context: Context, recipe: Recipe, onUpdate: (Recipe) -> Unit) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_recipe, null)
+
+        val editTextNombre = dialogView.findViewById<EditText>(R.id.editTextNombre)
+        val editTextDescripcion = dialogView.findViewById<EditText>(R.id.editTextDescripcion)
+        val editTextTiempo = dialogView.findViewById<EditText>(R.id.editTextTiempo)
+        val editTextDificultad = dialogView.findViewById<EditText>(R.id.editTextDificultad)
+        val editTextRaciones = dialogView.findViewById<EditText>(R.id.editTextRaciones)
+        val editTextImagen = dialogView.findViewById<EditText>(R.id.editTextImagen)
+
+        editTextNombre.setText(recipe.nombre)
+        editTextDescripcion.setText(recipe.descripcion)
+        editTextTiempo.setText(recipe.tiempo.toString())
+        editTextDificultad.setText(recipe.dificultad)
+        editTextRaciones.setText(recipe.raciones.toString())
+        editTextImagen.setText(recipe.imagen)
+
+        AlertDialog.Builder(context)
+            .setTitle("Editar Receta")
+            .setView(dialogView)
+            .setPositiveButton("Guardar") { _, _ ->
+                val updatedRecipe = Recipe(
+                    idRecipe = recipe.idRecipe, // No se cambia
+                    nombre = editTextNombre.text.toString(),
+                    descripcion = editTextDescripcion.text.toString(),
+                    tiempo = editTextTiempo.text.toString().toInt(),
+                    dificultad = editTextDificultad.text.toString(),
+                    raciones = editTextRaciones.text.toString().toInt(),
+                    imagen = editTextImagen.text.toString()
+                )
+                onUpdate(updatedRecipe)
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun updateRecipeInAPI(updatedRecipe: Recipe, position: Int) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val response = RecipeAPI.API().updateRecipe(updatedRecipe.idRecipe, updatedRecipe)
+                if (response.isSuccessful) {
+                    withContext(Dispatchers.Main) {
+                        llistatReceptes[position] = updatedRecipe
+                        notifyItemChanged(position)
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
