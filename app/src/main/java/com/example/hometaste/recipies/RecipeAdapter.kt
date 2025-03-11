@@ -3,75 +3,118 @@ package com.example.hometaste.recipies
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.hometaste.R
+import com.example.hometaste.data.RecipeAPI
+import com.example.hometaste.databinding.ItemRecipeBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-// connecta elements amb RV, amb llista de receptes
-class RecipeAdapter(var llistatReceptes:List<Recipe>):RecyclerView.Adapter<RecipeAdapterHolder>() {
-    // crea vista per cada element
+// Conecta elementos con el RecyclerView, con la lista de recetas
+
+// La lista de recetas es mutable porque necesitamos actualizarla dinámicamente.
+// Recibimos lifecycleScope desde la Activity para gestionar las corrutinas de forma segura con el ciclo de vida de la Activity.
+
+class RecipeAdapter(var llistatReceptes: MutableList<Recipe>, private val lifecycleScope: CoroutineScope) : RecyclerView.Adapter<RecipeAdapterHolder>() {
+
+    // Crea vista para cada elemento
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeAdapterHolder {
-        var itemInflater = LayoutInflater.from(parent.context)
-        var recyclerItem = itemInflater.inflate(R.layout.item_recipe, parent, false)
-        var holder = RecipeAdapterHolder(recyclerItem)
-
-        return holder
+        val itemInflater = LayoutInflater.from(parent.context)
+        val recyclerItem = itemInflater.inflate(R.layout.item_recipe, parent, false)
+        return RecipeAdapterHolder(recyclerItem)
     }
-    // retorna el nombre d'elements
+
+    // Retorna el número de elementos
     override fun getItemCount(): Int {
         return llistatReceptes.size
     }
-    // assigna dades per element
+
+    // Asigna datos a cada elemento
     override fun onBindViewHolder(holder: RecipeAdapterHolder, position: Int) {
-        val recipe = llistatReceptes.get(position)
+        val recipe = llistatReceptes[position]
         holder.Renderitzar(recipe)
+
+        // Aquí usamos Glide para cargar la imagen desde la URL
+        recipe.imagen?.let { url ->
+            Glide.with(holder.itemView.context)
+                .load(url) // Cargar la URL de la imagen
+                .into(holder.binding.recipeImage) // Asignar la imagen al ImageView
+        }
+
+        holder.binding.eliminar.setOnClickListener{
+            deleteRecipeFromAPI(recipe.idRecipe, position)
+        }
+
+        // Manejar clics en el ítem y en la imagen
         holder.itemView.setOnClickListener {
             this.recipeClick?.invoke(holder, recipe, position)
         }
-        holder.image.setOnClickListener {
+
+        holder.binding.recipeImage.setOnClickListener {
             this.imageClick?.invoke(holder, recipe, position)
         }
     }
 
-    private var recipeClick: ((holder:RecipeAdapterHolder, model: Recipe, position: Int) -> Unit)? = null
-    public fun setOnRecipeClick( recipeClickCallback: (holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit) {
+    // Función para eliminar receta de la API y actualizar RecyclerView
+    private fun deleteRecipeFromAPI(idRecipe: Int, position: Int) {
+        // Usamos lifecycleScope.launch en lugar de CoroutineScope para asegurar que se cancele si la Activity es destruida
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                // Llamamos al endpoint de eliminar receta de la API
+                val response = RecipeAPI.API().deleteRecipe(idRecipe)
+                if (response.isSuccessful) {
+                    withContext(Dispatchers.Main) {
+                        // Si la eliminación fue exitosa, eliminamos la receta de la lista y notificamos al adapter
+
+                        llistatReceptes.removeAt(position)// Aquí eliminamos el ítem de la lista mutable
+                        notifyItemRemoved(position) // Notificamos al RecyclerView que el ítem fue eliminado
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    private var recipeClick: ((holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit)? = null
+    fun setOnRecipeClick(recipeClickCallback: (holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit) {
         this.recipeClick = recipeClickCallback
     }
 
-    private var imageClick: ((holder:RecipeAdapterHolder, model: Recipe, position: Int) -> Unit)? = null
-    public fun setOnImageClick( imageClickCallback: (holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit) {
+    private var imageClick: ((holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit)? = null
+    fun setOnImageClick(imageClickCallback: (holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit) {
         this.imageClick = imageClickCallback
     }
-
 }
 
-// carrega elements a partir de vista
+// Carga elementos a partir de la vista
 class RecipeAdapterHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var nameRec: TextView = itemView.findViewById(R.id.recipeTitle)
-    var description: TextView = itemView.findViewById(R.id.recipeDescription)
-    var time: TextView = itemView.findViewById(R.id.recipeTime)
-    var skill: TextView = itemView.findViewById(R.id.recipeSkillLvl)
-    var serving: TextView = itemView.findViewById(R.id.recipeServing)
-    var image: ImageView = itemView.findViewById(R.id.recipeImage)
 
-    public fun Renderitzar(recipe: Recipe) {
-        nameRec.text = recipe.name
-        description.text = recipe.description
-        // aquí m'agradaria obtenir primer el recurs del text existent per omplir
-        time.text = buildString {
+    val binding = ItemRecipeBinding.bind(itemView)
+
+    fun Renderitzar(recipe: Recipe) {
+        binding.recipeTitle.text = recipe.nombre // Nombre de la receta
+        binding.recipeDescription.text = recipe.descripcion // Descripción de la receta
+
+        binding.recipeTime.text = buildString { // Tiempo de receta
             append("Tiempo: ")
-            append(recipe.time.toString())
+            append(recipe.tiempo.toString())
             append(" min")
         }
-        skill.text = buildString {
+        binding.recipeSkillLvl.text = buildString { // Dificultad de receta
             append("Dificultad: ")
-            append(recipe.skillLvl)
+            append(recipe.dificultad)
         }
-        serving.text = buildString {
+        binding.recipeServing.text = buildString { // Raciones de receta
             append("Raciones: ")
-            append(recipe.serving)
+            append(recipe.raciones)
         }
-        recipe.image?.let { image.setImageResource(it) }
+
+        // Ya no es necesario usar setImageResource porque usamos Glide
+        // Glide maneja la carga de la imagen
     }
 }

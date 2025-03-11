@@ -12,10 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.hometaste.data.RecipeAPI
 import com.example.hometaste.databinding.ActivityMyRecipiesBinding
 import com.example.hometaste.recipies.RecipeAdapter
-import com.example.hometaste.recipies.RecipiesProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MyRecipies : AppCompatActivity() {
     private lateinit var binding: ActivityMyRecipiesBinding
@@ -34,22 +38,35 @@ class MyRecipies : AppCompatActivity() {
         binding.bottomNavigationView.selectedItemId = R.id.recetas
         binding.bottomNavigationView.setOnItemSelectedListener(bottomNavListener)
 
-
-        // obtenim la data de simulació desde el provider
-        val recipesList = RecipiesProvider.RecipesList
-        recyclerView = findViewById(R.id.recipesRecyclerView)
-        adapter = RecipeAdapter(recipesList)
-
-        listSize = findViewById(R.id.listSize)
-        listSize.setText(buildString {
-            append("Mis Recetas (")
-            append(adapter.itemCount)
-            append(")")
-        })
-
+        // Inicializamos RecyclerView y Adapter
+        recyclerView = binding.recipesRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
+
+
+        // Llamamos a la API para obtener las recetas
+        fetchRecipes()
     }
+
+    private fun fetchRecipes() {
+        lifecycleScope.launch {
+            try {
+                // Obtenemos la lista de recetas desde la API
+                val recipeList = RecipeAPI.API().recipeList().toMutableList()
+
+                if (recipeList.isNotEmpty()) {
+                    // Usamos lifecycleScope para evitar problemas de memoria y que se ejecute en el hilo principal
+                    withContext(Dispatchers.Main) {
+                        // Pasamos lifecycleScope al adaptador para manejar las corrutinas dentro de él
+                        adapter = RecipeAdapter(recipeList, lifecycleScope)
+                        recyclerView.adapter = adapter
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
 
     private val bottomNavListener = fun(item: MenuItem): Boolean{
         when (item.itemId) {

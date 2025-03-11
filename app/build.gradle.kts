@@ -41,7 +41,13 @@ android {
 }
 
 dependencies {
+    // retrofit
+    implementation(libs.retrofit)
+    // gson converter
+    implementation(libs.converter.gson)
 
+    // Glide (cargar URL de imagenes)
+    implementation(libs.glide)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
