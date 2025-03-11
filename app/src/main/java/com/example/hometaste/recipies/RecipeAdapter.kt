@@ -1,10 +1,14 @@
 package com.example.hometaste.recipies
 
+import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.hometaste.MyRecipies
 import com.example.hometaste.R
 import com.example.hometaste.data.RecipeAPI
 import com.example.hometaste.databinding.ItemRecipeBinding
@@ -18,7 +22,10 @@ import kotlinx.coroutines.withContext
 // La lista de recetas es mutable porque necesitamos actualizarla dinámicamente.
 // Recibimos lifecycleScope desde la Activity para gestionar las corrutinas de forma segura con el ciclo de vida de la Activity.
 
-class RecipeAdapter(var llistatReceptes: MutableList<Recipe>, private val lifecycleScope: CoroutineScope) : RecyclerView.Adapter<RecipeAdapterHolder>() {
+class RecipeAdapter(var llistatReceptes: MutableList<Recipe>,
+                    private val lifecycleScope: CoroutineScope,
+                    private val listSizeTextView: TextView)
+    : RecyclerView.Adapter<RecipeAdapterHolder>() {
 
     // Crea vista para cada elemento
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeAdapterHolder {
@@ -44,11 +51,14 @@ class RecipeAdapter(var llistatReceptes: MutableList<Recipe>, private val lifecy
                 .into(holder.binding.recipeImage) // Asignar la imagen al ImageView
         }
 
-        holder.binding.eliminar.setOnClickListener{
-            deleteRecipeFromAPI(recipe.idRecipe, position)
+        // Configurar eliminación con confirmación
+        holder.binding.eliminar.setOnClickListener {
+            showDeleteConfirmationDialog(holder.itemView.context) {
+                deleteRecipeFromAPI(recipe.idRecipe, position)
+            }
         }
 
-        // Manejar clics en el ítem y en la imagen
+        // Manejar clics en el ítem e imagen
         holder.itemView.setOnClickListener {
             this.recipeClick?.invoke(holder, recipe, position)
         }
@@ -57,6 +67,18 @@ class RecipeAdapter(var llistatReceptes: MutableList<Recipe>, private val lifecy
             this.imageClick?.invoke(holder, recipe, position)
         }
     }
+
+    // Mostrar alerta de confirmación
+    private fun showDeleteConfirmationDialog(context: Context, onConfirm: () -> Unit) {
+        AlertDialog.Builder(context)
+            .setTitle("Confirmación")
+            .setMessage("¿Está seguro que quiere eliminar esta receta?")
+            .setPositiveButton("Confirmar") { _, _ -> onConfirm() }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+
 
     // Función para eliminar receta de la API y actualizar RecyclerView
     private fun deleteRecipeFromAPI(idRecipe: Int, position: Int) {
@@ -71,6 +93,9 @@ class RecipeAdapter(var llistatReceptes: MutableList<Recipe>, private val lifecy
 
                         llistatReceptes.removeAt(position)// Aquí eliminamos el ítem de la lista mutable
                         notifyItemRemoved(position) // Notificamos al RecyclerView que el ítem fue eliminado
+
+                        // ACTUALIZAMOS EL CONTADOR DIRECTAMENTE
+                        listSizeTextView.text = "Mis Recetas (${llistatReceptes.size})"
                     }
                 }
             } catch (e: Exception) {

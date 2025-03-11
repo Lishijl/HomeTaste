@@ -9,6 +9,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import java.security.SecureRandom
 import java.security.cert.CertificateException
@@ -30,6 +31,9 @@ interface RecipeService {
 
     @DELETE("recipes/delete/{id}")
     suspend fun deleteRecipe(@Path("id") idRecipe: Int): Response<Void>
+
+    @PUT("recipes/update/{id}")
+    suspend fun updateRecipe(@Path("id") idRecipe: Int, @Body recipe: Recipe): Response<Void>
 }
 
 class RecipeAPI {

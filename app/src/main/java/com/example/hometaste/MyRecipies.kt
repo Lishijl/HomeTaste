@@ -40,8 +40,7 @@ class MyRecipies : AppCompatActivity() {
 
         // Inicializamos RecyclerView y Adapter
         recyclerView = binding.recipesRecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         // Llamamos a la API para obtener las recetas
         fetchRecipes()
@@ -57,8 +56,9 @@ class MyRecipies : AppCompatActivity() {
                     // Usamos lifecycleScope para evitar problemas de memoria y que se ejecute en el hilo principal
                     withContext(Dispatchers.Main) {
                         // Pasamos lifecycleScope al adaptador para manejar las corrutinas dentro de él
-                        adapter = RecipeAdapter(recipeList, lifecycleScope)
+                        adapter = RecipeAdapter(recipeList, lifecycleScope, binding.listSize)
                         recyclerView.adapter = adapter
+                        binding.listSize.text = "Mis Recetas (${recipeList.size})"
                     }
                 }
             } catch (e: Exception) {
@@ -83,6 +83,8 @@ class MyRecipies : AppCompatActivity() {
         }
         return false
     }
+
+
     // considerar si usar con API
     fun searchRecipe(view: View) {
     }
