@@ -209,8 +209,5 @@ class RecipeAdapterHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             append("Raciones: ")
             append(recipe.raciones)
         }
-
-        // Ya no es necesario usar setImageResource porque usamos Glide
-        // Glide maneja la carga de la imagen
     }
 }

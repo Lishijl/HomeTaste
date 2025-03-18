@@ -1,7 +1,10 @@
 package com.example.hometaste.recipies
 
-// model de data
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+// model de data
+@Parcelize
 data class Recipe (
     val idRecipe: Int,
     val nombre: String,
@@ -10,4 +13,4 @@ data class Recipe (
     val dificultad: String,
     val raciones: Int,
     val imagen: String?
-)
+) : Parcelable

@@ -29,9 +29,10 @@ class MyRecipies : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RecipeAdapter
 
-    private val listRecipies = mutableListOf<Recipe>()
-
-    private lateinit var listSize: TextView
+    // var llista mutable necessari local
+    private var listRecipies = mutableListOf<Recipe>()
+    // llista d'API
+    private var recipeList = mutableListOf<Recipe>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,16 @@ class MyRecipies : AppCompatActivity() {
         recyclerView = binding.recipesRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
+        // al ser fil principal i iniciar per primer cop, cal inicialitzar amb l'adapter
+        // Pasamos lifecycleScope al adaptador para manejar las corrutinas dentro de él
+        adapter = RecipeAdapter(listRecipies, lifecycleScope, binding.listSize)
+        recyclerView.adapter = adapter
+
+        binding.create.setOnClickListener {
+            val intent = Intent(this, RecipeForm::class.java)
+            startActivity(intent)
+        }
+
         // Llamamos a la API para obtener las recetas
         fetchRecipes()
     }
@@ -53,16 +64,18 @@ class MyRecipies : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 // Obtenemos la lista de recetas desde la API
-                val recipeList = RecipeAPI.API().recipeList().toMutableList()
+                recipeList = RecipeAPI.API().recipeList().toMutableList()
 
                 if (recipeList.isNotEmpty()) {
                     // Usamos lifecycleScope para evitar problemas de memoria y que se ejecute en el hilo principal
                     withContext(Dispatchers.Main) {
-                        // Pasamos lifecycleScope al adaptador para manejar las corrutinas dentro de él
-                        adapter = RecipeAdapter(recipeList, lifecycleScope, binding.listSize)
-                        recyclerView.adapter = adapter
-                        binding.listSize.text = "Mis Recetas (${recipeList.size})"
+                        listRecipies.clear()
+                        listRecipies.addAll(recipeList) // actualitza localment
+                        adapter.notifyDataSetChanged()
+                        binding.listSize.text = "Mis Recetas (${listRecipies.size})"
                     }
+                } else {
+                    binding.listSize.text = "Mis Recetas (0)"
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -86,8 +99,21 @@ class MyRecipies : AppCompatActivity() {
         return false
     }
 
-
-    // considerar si usar con API
+    // considerar si usar con API - substituible pel binding
     fun searchRecipe(view: View) {
+    }
+
+    // cada cop que tornem a l'activitat, actualitzem l'adapter que pintar
+    override fun onResume() {
+        super.onResume()
+        // < 33
+        val newRecipe = intent.getParcelableExtra<Recipe>("newRecipe")
+
+        if (newRecipe != null) {
+            listRecipies.add(newRecipe)
+            adapter.notifyItemInserted(listRecipies.size - 1)
+        } else {
+            adapter.notifyDataSetChanged()
+        }
     }
 }
