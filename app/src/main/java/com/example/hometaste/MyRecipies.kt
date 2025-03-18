@@ -67,7 +67,6 @@ class MyRecipies : AppCompatActivity() {
         }
     }
 
-
     private val bottomNavListener = fun(item: MenuItem): Boolean{
         when (item.itemId) {
             R.id.home -> {
