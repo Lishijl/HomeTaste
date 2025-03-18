@@ -23,10 +23,11 @@ import kotlinx.coroutines.withContext
 // La lista de recetas es mutable porque necesitamos actualizarla dinámicamente.
 // Recibimos lifecycleScope desde la Activity para gestionar las corrutinas de forma segura con el ciclo de vida de la Activity.
 
-class RecipeAdapter(var llistatReceptes: MutableList<Recipe>,
-                    private val lifecycleScope: CoroutineScope,
-                    private val listSizeTextView: TextView)
-    : RecyclerView.Adapter<RecipeAdapterHolder>() {
+class RecipeAdapter(
+    var llistatReceptes: MutableList<Recipe>,
+    private val lifecycleScope: CoroutineScope,
+    private val listSizeTextView: TextView,
+) : RecyclerView.Adapter<RecipeAdapterHolder>() {
 
     // Crea vista para cada elemento
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeAdapterHolder {
@@ -47,10 +48,17 @@ class RecipeAdapter(var llistatReceptes: MutableList<Recipe>,
 
         // Aquí usamos Glide para cargar la imagen desde la URL
         recipe.imagen?.let { url ->
-            Glide.with(holder.itemView.context)
-                .load(url) // Cargar la URL de la imagen
-                .into(holder.binding.recipeImage) // Asignar la imagen al ImageView
-        }
+            if (url.isNotEmpty()) {
+                Glide.with(holder.itemView.context)
+                    .load(url) // Cargar la URL de la imagen
+                    .error(R.drawable.imagen_default) // si hay un error al escribir la URL pone la imagen default
+                    .into(holder.binding.recipeImage) // Asignar la imagen al ImageView
+            } else {
+                // si la url está vacía pone la imagen default
+                holder.binding.recipeImage.setImageResource(R.drawable.imagen_default)
+            }
+            // si la url es null pone la imagen default
+        } ?: holder.binding.recipeImage.setImageResource(R.drawable.imagen_default)
 
         // Configurar eliminación con confirmación
         holder.binding.eliminar.setOnClickListener {
@@ -139,7 +147,6 @@ class RecipeAdapter(var llistatReceptes: MutableList<Recipe>,
     }
 
 
-
     // Función para eliminar receta de la API y actualizar RecyclerView
     private fun deleteRecipeFromAPI(idRecipe: Int, position: Int) {
         // Usamos lifecycleScope.launch en lugar de CoroutineScope para asegurar que se cancele si la Activity es destruida
@@ -165,12 +172,16 @@ class RecipeAdapter(var llistatReceptes: MutableList<Recipe>,
     }
 
 
-    private var recipeClick: ((holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit)? = null
+    private var recipeClick: ((holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit)? =
+        null
+
     fun setOnRecipeClick(recipeClickCallback: (holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit) {
         this.recipeClick = recipeClickCallback
     }
 
-    private var imageClick: ((holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit)? = null
+    private var imageClick: ((holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit)? =
+        null
+
     fun setOnImageClick(imageClickCallback: (holder: RecipeAdapterHolder, model: Recipe, position: Int) -> Unit) {
         this.imageClick = imageClickCallback
     }
