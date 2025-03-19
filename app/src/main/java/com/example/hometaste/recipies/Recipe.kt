@@ -2,7 +2,6 @@ package com.example.hometaste.recipies
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-
 // model de data
 @Parcelize
 data class Recipe (

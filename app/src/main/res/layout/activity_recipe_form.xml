@@ -74,13 +74,13 @@
             android:text="Tiempo:"
             android:textSize="16sp" />
         <EditText
-            android:id="@+id/temps2"
+            android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="time" />
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/temps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="7.5dp"

@@ -1,7 +1,9 @@
 package com.example.hometaste
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -23,6 +25,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MyRecipies : AppCompatActivity() {
+    companion object {
+        const val REQUEST_CODE = 1001
+    }
     private lateinit var binding: ActivityMyRecipiesBinding
 
     // declarem dos variables per controlar el RV
@@ -53,7 +58,7 @@ class MyRecipies : AppCompatActivity() {
 
         binding.create.setOnClickListener {
             val intent = Intent(this, RecipeForm::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, REQUEST_CODE)
         }
 
         // Llamamos a la API para obtener las recetas
@@ -61,6 +66,7 @@ class MyRecipies : AppCompatActivity() {
     }
 
     private fun fetchRecipes() {
+        // asincro
         lifecycleScope.launch {
             try {
                 // Obtenemos la lista de recetas desde la API
@@ -72,10 +78,13 @@ class MyRecipies : AppCompatActivity() {
                         listRecipies.clear()
                         listRecipies.addAll(recipeList) // actualitza localment
                         adapter.notifyDataSetChanged()
-                        binding.listSize.text = "Mis Recetas (${listRecipies.size})"
+                        binding.listSize.text = "Mis Recetas (${adapter.itemCount})"
                     }
                 } else {
-                    binding.listSize.text = "Mis Recetas (0)"
+                    withContext(Dispatchers.Main) {
+                        adapter.notifyDataSetChanged()
+                        binding.listSize.text = "Mis Recetas (${adapter.itemCount})"
+                    }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -99,21 +108,17 @@ class MyRecipies : AppCompatActivity() {
         return false
     }
 
-    // considerar si usar con API - substituible pel binding
-    fun searchRecipe(view: View) {
-    }
-
     // cada cop que tornem a l'activitat, actualitzem l'adapter que pintar
-    override fun onResume() {
-        super.onResume()
-        // < 33
-        val newRecipe = intent.getParcelableExtra<Recipe>("newRecipe")
-
-        if (newRecipe != null) {
-            listRecipies.add(newRecipe)
-            adapter.notifyItemInserted(listRecipies.size - 1)
-        } else {
-            adapter.notifyDataSetChanged()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val newRecipe = data?.getParcelableExtra<Recipe>("newRecipe")
+            if (newRecipe != null) {
+                listRecipies.add(newRecipe)
+                adapter.notifyItemInserted(listRecipies.size - 1)
+            } else {
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 }
