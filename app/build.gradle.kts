@@ -50,6 +50,10 @@ dependencies {
 
     // Glide (cargar URL de imagenes)
     implementation(libs.glide)
+
+    // gráficas MPAndroidChart
+    implementation (libs.mpandroidchart)
+
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

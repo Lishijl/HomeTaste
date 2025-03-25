@@ -116,6 +116,7 @@ class MyRecipies : AppCompatActivity() {
             if (newRecipe != null) {
                 listRecipies.add(newRecipe)
                 adapter.notifyItemInserted(listRecipies.size - 1)
+                binding.listSize.text = "Mis Recetas (${listRecipies.size})" // Actualizamos el contador
             } else {
                 adapter.notifyDataSetChanged()
             }
