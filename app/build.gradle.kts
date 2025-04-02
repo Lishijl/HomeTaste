@@ -54,6 +54,11 @@ dependencies {
     // gráficas MPAndroidChart
     implementation (libs.mpandroidchart)
 
+    // datastore preferences
+    implementation(libs.androidx.datastore.preferences)
+
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
