@@ -45,4 +45,8 @@ class MainActivity : AppCompatActivity() {
         val iHelp = Intent(this, Help::class.java)
         startActivity(iHelp)
     }
+    fun goToGraphics(view: View) {
+        val iGraphics = Intent(this, Graphics::class.java)
+        startActivity(iGraphics)
+    }
 }

@@ -59,4 +59,5 @@
     <string name="men_de_acceso_r_pido_a_las_pantallas_para_volver_aqu_clic_al_retroceso_del_sistema">Menú de acceso rápido a las pantallas, para volver aquí clic al retroceso del sistema.</string>
     <string name="imagenreceta">imagenReceta</string>
     <string name="guardar_receta_btn">Guardar receta</string>
+    <string name="estad_sticas">Estadísticas</string>
 </resources>

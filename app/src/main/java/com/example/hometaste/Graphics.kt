@@ -1,5 +1,6 @@
 package com.example.hometaste
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.graphics.Color
+import android.view.MenuItem
 // import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
@@ -30,6 +32,7 @@ class Graphics : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityGraphicsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bottomNavigationView.setOnItemSelectedListener(bottomNavListener)
 
         lifecycleScope.launch(Dispatchers.IO) {
             getDataExperience().collect { data ->
@@ -107,5 +110,30 @@ class Graphics : AppCompatActivity() {
             delete = data[intPreferencesKey("borrar")] ?: 0,
             search = data[intPreferencesKey("buscar")] ?: 0
         )
+    }
+    private val bottomNavListener = fun(item: MenuItem): Boolean{
+        when (item.itemId) {
+            R.id.home -> {
+                // Cambia a MainActivity
+                startActivity(Intent(this, MainActivity::class.java))
+                return true
+            }
+            R.id.buscar -> {
+                // Cambia a Filter
+                startActivity(Intent(this, Filter::class.java))
+                return true
+            }
+            R.id.recetas -> {
+                // Cambia a MyRecipies
+                startActivity(Intent(this, MyRecipies::class.java))
+                return true
+            }
+            R.id.estadisticas -> {
+                // Cambia a estadistica
+                startActivity(Intent(this, Graphics::class.java))
+                return true
+            }
+        }
+        return false
     }
 }

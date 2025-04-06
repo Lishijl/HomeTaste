@@ -14,4 +14,8 @@
         android:id="@+id/recetas"
         android:icon="@drawable/libro"
         android:title="Mis recetas"/>
+    <item
+        android:id="@+id/estadisticas"
+        android:icon="@drawable/grafico"
+        android:title="Estadísticas"/>
 </menu>

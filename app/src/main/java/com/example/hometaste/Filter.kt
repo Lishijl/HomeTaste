@@ -29,10 +29,14 @@ class Filter : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
                 return true
             }
-
             R.id.recetas -> {
                 // Cambia a MyRecipies
                 startActivity(Intent(this, MyRecipies::class.java))
+                return true
+            }
+            R.id.estadisticas -> {
+                // Cambia a estadistica
+                startActivity(Intent(this, Graphics::class.java))
                 return true
             }
         }

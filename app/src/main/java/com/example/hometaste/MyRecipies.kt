@@ -140,6 +140,11 @@ class MyRecipies : AppCompatActivity() {
                 startActivity(Intent(this, Filter::class.java))
                 return true
             }
+            R.id.estadisticas -> {
+                // Cambia a estadistica
+                startActivity(Intent(this, Graphics::class.java))
+                return true
+            }
         }
         return false
     }
