@@ -41,6 +41,11 @@ class Settings : AppCompatActivity() {
                 startActivity(Intent(this, MyRecipies::class.java))
                 return true
             }
+            R.id.estadisticas -> {
+                // Cambia a estadistica
+                startActivity(Intent(this, Graphics::class.java))
+                return true
+            }
         }
         return false
     }
