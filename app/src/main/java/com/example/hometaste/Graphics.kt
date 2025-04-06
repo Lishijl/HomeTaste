@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.graphics.Color
 import android.view.MenuItem
-// import com.github.mikephil.charting.formatter.DefaultValueFormatter
+import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 class Graphics : AppCompatActivity() {
@@ -46,10 +46,10 @@ class Graphics : AppCompatActivity() {
     }
     private fun UpdatePieGraph(data: DataExperience) {
         val entries = listOf(
-            PieEntry(data.create.toFloat() , "Crear Recetas"), // Valor % menor
-            PieEntry(data.edit.toFloat(), "Buscar Recetas")  // Valor busqueda superior %
+            PieEntry(data.create.toFloat() , "Crear"), // Valor % menor
+            PieEntry(data.search.toFloat(), "Buscar")  // Valor busqueda superior %
         )
-        val pieDataSet = PieDataSet(entries, "Distribució")
+        val pieDataSet = PieDataSet(entries, "Tendencia")
         pieDataSet.colors = listOf(Color.rgb(179, 226, 255), Color.rgb(171, 235, 205)) // blau i verd clar
         pieDataSet.valueTextColor = Color.BLACK // Color del text
         pieDataSet.valueTextSize = 16f // Mida del text
@@ -86,9 +86,12 @@ class Graphics : AppCompatActivity() {
         barDataSet.colors = actionColors
         barDataSet.valueTextColor = Color.BLACK
         barDataSet.valueTextSize = 16f
-        barDataSet.valueFormatter = IndexAxisValueFormatter(labels)
+        barDataSet.valueFormatter = DefaultValueFormatter(0)
 
         binding.graficaBarra.apply {
+            xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+            xAxis.granularity = 1f
+            xAxis.labelCount = labels.size
             this.data= BarData(barDataSet)
             xAxis.setDrawGridLines(false)
             xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -96,7 +99,7 @@ class Graphics : AppCompatActivity() {
             axisRight.setDrawAxisLine(false)
             axisRight.setDrawGridLines(false)
             axisRight.setDrawLabels(false)
-            description.text="Interacciones mas frecuentes"
+            description.text="Estadistica de interacciones"
             description.isEnabled = true // Activa la descripció
             setFitBars(true) // Ajusta les barres al gràfic
             animateY(1000) // Animació en Y
