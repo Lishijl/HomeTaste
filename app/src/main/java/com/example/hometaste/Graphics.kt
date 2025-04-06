@@ -75,7 +75,7 @@ class Graphics : AppCompatActivity() {
             BarEntry(3f, data.search.toFloat())
         )
         val labels = listOf("Crear", "Editar", "Borrar", "Buscar")
-        val barDataSet = BarDataSet(entries, "Resultados de interacciones")
+        val barDataSet = BarDataSet(entries, "Operaciones")
 
         val actionColors = listOf(
             Color.rgb(156, 250, 135), // verd crear
