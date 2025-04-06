@@ -9,8 +9,9 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.hometaste.MyRecipies
+// import com.example.hometaste.MyRecipies
 import com.example.hometaste.R
+import com.example.hometaste.data.DataStoreManager
 import com.example.hometaste.data.RecipeAPI
 import com.example.hometaste.databinding.ItemRecipeBinding
 import kotlinx.coroutines.CoroutineScope
@@ -27,6 +28,7 @@ class RecipeAdapter(
     var llistatReceptes: MutableList<Recipe>,
     private val lifecycleScope: CoroutineScope,
     private val listSizeTextView: TextView,
+    private val dataStoreManager: DataStoreManager
 ) : RecyclerView.Adapter<RecipeAdapterHolder>() {
 
     // Crea vista para cada elemento
@@ -125,6 +127,7 @@ class RecipeAdapter(
             try {
                 val response = RecipeAPI.API().updateRecipe(updatedRecipe.idRecipe, updatedRecipe)
                 if (response.isSuccessful) {
+                    dataStoreManager.incrementEditCount()
                     withContext(Dispatchers.Main) {
                         llistatReceptes[position] = updatedRecipe
                         notifyItemChanged(position)
@@ -155,6 +158,7 @@ class RecipeAdapter(
                 // Llamamos al endpoint de eliminar receta de la API
                 val response = RecipeAPI.API().deleteRecipe(idRecipe)
                 if (response.isSuccessful) {
+                    dataStoreManager.incrementDeleteCount()
                     withContext(Dispatchers.Main) {
                         // Si la eliminación fue exitosa, eliminamos la receta de la lista y notificamos al adapter
 

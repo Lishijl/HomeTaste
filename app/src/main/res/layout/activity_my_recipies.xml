@@ -57,7 +57,6 @@
             android:layout_marginEnd="20dp"
             android:background="?selectableItemBackgroundBorderless"
             android:contentDescription="@string/buscador"
-            android:onClick="searchRecipe"
             android:src="@drawable/lupa" />
     </LinearLayout>
 

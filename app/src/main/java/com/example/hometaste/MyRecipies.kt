@@ -3,28 +3,39 @@ package com.example.hometaste
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+// import android.util.Log
 import android.view.MenuItem
-import android.view.View
-import android.widget.TextView
+// import android.view.View
+// import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+/*
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.fragment.app.Fragment
+* */
 import androidx.lifecycle.lifecycleScope
+import com.example.hometaste.data.DataStoreManager
 import com.example.hometaste.data.RecipeAPI
+// import com.example.hometaste.data.dataStore
 import com.example.hometaste.databinding.ActivityMyRecipiesBinding
 import com.example.hometaste.recipies.Recipe
 import com.example.hometaste.recipies.RecipeAdapter
-import com.google.android.material.bottomnavigation.BottomNavigationView
+// import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
+// import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MyRecipies : AppCompatActivity() {
+    private lateinit var dataStoreManager: DataStoreManager
+    private var crearCount : Int = 0
+    private var buscarCount : Int = 0
+    //private var editarCount: Int = 0
+    //private var eliminarCount : Int = 0
     companion object {
         const val REQUEST_CODE = 1001
     }
@@ -46,6 +57,7 @@ class MyRecipies : AppCompatActivity() {
         setContentView(binding.root)
         binding.bottomNavigationView.selectedItemId = R.id.recetas
         binding.bottomNavigationView.setOnItemSelectedListener(bottomNavListener)
+        dataStoreManager = DataStoreManager(this)
 
         // Inicializamos RecyclerView y Adapter
         recyclerView = binding.recipesRecyclerView
@@ -53,12 +65,36 @@ class MyRecipies : AppCompatActivity() {
 
         // al ser fil principal i iniciar per primer cop, cal inicialitzar amb l'adapter
         // Pasamos lifecycleScope al adaptador para manejar las corrutinas dentro de él
-        adapter = RecipeAdapter(listRecipies, lifecycleScope, binding.listSize)
+        adapter = RecipeAdapter(listRecipies, lifecycleScope, binding.listSize, dataStoreManager)
         recyclerView.adapter = adapter
 
         binding.create.setOnClickListener {
             val intent = Intent(this, RecipeForm::class.java)
             startActivityForResult(intent, REQUEST_CODE)
+            crearCount++
+            //var crearTotal = 0
+            lifecycleScope.launch {
+                dataStoreManager.incrementCreateCount()
+                /*
+                dataStoreManager.getCreateCount().collect { createCount ->
+                    crearTotal = createCount + crearCount
+                }
+                dataStoreManager.createRecipe(crearTotal)
+                * */
+            }
+        }
+        binding.buscar.setOnClickListener {
+            buscarCount++
+            //var buscarTotal = 0
+            lifecycleScope.launch {
+                dataStoreManager.incrementSearchCount()
+                /*
+                dataStoreManager.getSearchCount().collect { searchCount ->
+                    buscarTotal = searchCount + buscarCount
+                }
+                dataStoreManager.searchRecipe(buscarTotal)
+                * */
+            }
         }
 
         // Llamamos a la API para obtener las recetas
