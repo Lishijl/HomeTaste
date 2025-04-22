@@ -59,14 +59,14 @@
             android:id="@+id/graficaBarra"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="15dp"
+            android:layout_margin="25dp"
             android:layout_weight="1" />
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/graficaPie"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="15dp"
+            android:layout_margin="25dp"
             android:layout_weight="1" />
 
     </LinearLayout>

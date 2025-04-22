@@ -32,7 +32,7 @@ class Splash : AppCompatActivity() {
         // Ejecutar el código con un retraso en el hilo principal sin bloquear la interfaz.
         Handler(Looper.getMainLooper()).postDelayed({
             // Cambia de actividad a la actividad principial provisional después de 1s
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Graphics::class.java)
             startActivity(intent)
             finish() }, 2000) // 2000 ms = 2 segundo
     }
