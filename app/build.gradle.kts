@@ -67,7 +67,12 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.support.annotations)
     implementation(libs.androidx.annotation)
+
+    // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Tests amb LiveData
+    testImplementation(libs.androidx.core.testing)
 }
