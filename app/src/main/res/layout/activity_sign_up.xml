@@ -35,11 +35,13 @@
             android:layout_marginTop="30dp"
             app:cardCornerRadius="6dp">
 
-            <TextView
+            <EditText
+                android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
+                android:backgroundTint="@android:color/transparent"
                 android:text="miguel94"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
@@ -50,11 +52,13 @@
             android:layout_marginTop="20dp"
             app:cardCornerRadius="6dp">
 
-            <TextView
+            <EditText
+                android:id="@+id/userEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
+                android:backgroundTint="@android:color/transparent"
                 android:text="@string/jmiguel94_gmail_com"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
@@ -66,6 +70,7 @@
             app:cardCornerRadius="6dp">
 
             <EditText
+                android:id="@+id/userPswwd"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
@@ -83,6 +88,7 @@
             app:cardCornerRadius="6dp">
 
             <EditText
+                android:id="@+id/userPswwdConfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
@@ -95,6 +101,7 @@
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
@@ -112,9 +119,9 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/sOrange1Login"
+                android:onClick="goToLogin"
                 android:text="@string/iniciar"
                 android:textStyle="bold"
-                android:onClick="goToLogin"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -123,10 +130,10 @@
                 android:layout_marginStart="11dp"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/sOrange2ContinueSign"
-                android:text="@string/continuar"
-                android:textStyle="bold"
-                android:textColor="#4A4459"
                 android:onClick="goToFilter"
+                android:text="@string/continuar"
+                android:textColor="#4A4459"
+                android:textStyle="bold"
                 tools:ignore="ButtonStyle" />
         </LinearLayout>
 
