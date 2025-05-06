@@ -34,14 +34,14 @@ class ActivityRegistreViewModel {
     }
 
     private fun checkUserName() {
+        _errorNomUsuari.value = "El nombre de usuario és obligatorio"
         if (_userName.isEmpty()) {
-            _errorNomUsuari.value = "ERROR: El nombre de campo de usuario no puede estar vacío."
             return
         }
 
         if (_userName.length < 5 || _userName.length > 20) {
             _errorNomUsuari.value =
-                "ERROR: El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos."
+                "El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos."
             return
         }
 
@@ -49,10 +49,10 @@ class ActivityRegistreViewModel {
             Regex("^[a-zA-Z][a-zA-Z0-9_.-]{4,19}$") // empieza con letra, permite letras, números, _.- y de 5 a 20
         if (!usernameRegex.matches(_userName)) {
             if (!_userName[0].isLetter()) {
-                _errorNomUsuari.value = "ERROR: El nombre de usuario debe iniciar con una letra."
+                _errorNomUsuari.value = "El nombre de usuario debe iniciar con una letra."
             } else {
                 _errorNomUsuari.value =
-                    "ERROR: El nombre de usuario sólo puede contener carácteres alfanuméricos o “_”, “-” y “.”."
+                    "El nombre de usuario sólo puede contener carácteres alfanuméricos o “_”, “-” y “.”."
             }
             return
         }
@@ -71,18 +71,18 @@ class ActivityRegistreViewModel {
 
     private fun checkUserEmail() {
         if (_email.isEmpty()) {
-            _errorEmail.value = "ERROR: El correo no puede estar vacío."
+            _errorEmail.value = "El correo electrónico és obligatorio"
             return
         }
 
         if ('@' !in _email) {
-            _errorEmail.value = "ERROR: Introduce un correo electrónico válido, que contiene un “@”."
+            _errorEmail.value = "Introduce un correo electrónico válido, que contiene un “@”."
             return
         }
 
         val parts = _email.split("@")
         if (parts.size != 2 || parts[1].isEmpty() || !parts[1].contains(".")) {
-            _errorEmail.value = "ERROR: Introduce un correo electrónico válido que tenga un dominio."
+            _errorEmail.value = "Introduce un correo electrónico válido que tenga un dominio."
             return
         }
 
@@ -102,7 +102,7 @@ class ActivityRegistreViewModel {
 
     private fun checkUserPassword() {
         if (_userPassword.isEmpty()) {
-            _errorUserPassword.value = "La contraseña no puede estar vacía."
+            _errorUserPassword.value = "La contraseña és obligatoria"
             return
         }
 
@@ -126,7 +126,7 @@ class ActivityRegistreViewModel {
 
     private fun checkPasswordsMatch() {
         if (_userConfirmPassword.isEmpty()) {
-            _errorConfirmPassword.value = "La contraseña no puede estar vacía."
+            _errorConfirmPassword.value = "La contraseña de confirmación és obligatoria"
         } else if (_userPassword != _userConfirmPassword) {
             _errorConfirmPassword.value = "Las contraseñas no coinciden"
         } else {

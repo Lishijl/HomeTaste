@@ -21,31 +21,31 @@ class ActivityRegistreViewModelTest {
     @Test
     fun `validar camp d’usuari buit i que retorni l’error corresponent`() {
         viewModel.updateUserName("")
-        assertEquals("ERROR: El nombre de campo de usuario no puede estar vacío.", viewModel.errorNomUsuari.value)
+        assertEquals("El nombre de usuario és obligatorio", viewModel.errorNomUsuari.value)
     }
 
     @Test
     fun `validar camp d’usuari massa curt i que retorni l’error corresponent`() {
         viewModel.updateUserName("eu")
-        assertEquals("ERROR: El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos.", viewModel.errorNomUsuari.value)
+        assertEquals("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos.", viewModel.errorNomUsuari.value)
     }
 
     @Test
     fun `validar camp d’usuari massa llarg i que retorni l’error corresponent`() {
         viewModel.updateUserName("supercalifragilisticoespialidoso")
-        assertEquals("ERROR: El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos.", viewModel.errorNomUsuari.value)
+        assertEquals("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos.", viewModel.errorNomUsuari.value)
     }
 
     @Test
     fun `validar camp d’usuari amb caràcters invàlids i que retorni l’error corresponent`() {
         viewModel.updateUserName("usuariInvalid#123")
-        assertEquals("ERROR: El nombre de usuario sólo puede contener carácteres alfanuméricos o “_”, “-” y “.”.", viewModel.errorNomUsuari.value)
+        assertEquals("El nombre de usuario sólo puede contener carácteres alfanuméricos o “_”, “-” y “.”.", viewModel.errorNomUsuari.value)
     }
 
     @Test
     fun `validar camp d’usuari que comenci per un carácter que no sigui lletra i que retorni l’error corresponent`() {
         viewModel.updateUserName("!usuariInvalid")
-        assertEquals("ERROR: El nombre de usuario debe iniciar con una letra.", viewModel.errorNomUsuari.value)
+        assertEquals("El nombre de usuario debe iniciar con una letra.", viewModel.errorNomUsuari.value)
     }
 
     @Test
@@ -62,19 +62,19 @@ class ActivityRegistreViewModelTest {
     @Test
     fun `validar camp email buit i que retorni l’error corresponent`() {
         viewModel.updateUserEmail("")
-        assertEquals("ERROR: El correo no puede estar vacío.", viewModel.errorEmail.value)
+        assertEquals("El correo electrónico és obligatorio", viewModel.errorEmail.value)
     }
 
     @Test
     fun `validar camp email format incorrecte sense arroba`() {
         viewModel.updateUserEmail("usuario.gmail.com")
-        assertEquals("ERROR: Introduce un correo electrónico válido, que contiene un “@”.", viewModel.errorEmail.value)
+        assertEquals("Introduce un correo electrónico válido, que contiene un “@”.", viewModel.errorEmail.value)
     }
 
     @Test
     fun `validar camp email format incorrecte sense domini`() {
         viewModel.updateUserEmail("usuario@")
-        assertEquals("ERROR: Introduce un correo electrónico válido que tenga un dominio.", viewModel.errorEmail.value)
+        assertEquals("Introduce un correo electrónico válido que tenga un dominio.", viewModel.errorEmail.value)
     }
 
     @Test
@@ -91,7 +91,7 @@ class ActivityRegistreViewModelTest {
     @Test
     fun `valida contrasenya i retorna error quan es buida`() {
         viewModel.updateUserPassword("")
-        assertEquals("La contraseña no puede estar vacía.", viewModel.errorUserPassword.value)
+        assertEquals("La contraseña és obligatoria", viewModel.errorUserPassword.value)
     }
 
     @Test
@@ -112,7 +112,7 @@ class ActivityRegistreViewModelTest {
     @Test
     fun `valida contrasenya de confirmacio i retorna error quan es buida`() {
         viewModel.updateConfirmUserPassword("")
-        assertEquals("La contraseña no puede estar vacía.", viewModel.errorConfirmPassword.value)
+        assertEquals("La contraseña de confirmación és obligatoria", viewModel.errorConfirmPassword.value)
     }
 
     @Test
