@@ -3,6 +3,8 @@ package com.example.hometaste
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.clearText
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.hasErrorText
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -35,6 +37,43 @@ class ActivityRegistreUITest {
             .check(matches(hasErrorText("El nombre de usuario és obligatorio")))
     }
     @Test
+    fun testUsuarioCorto() {
+        onView(withId(R.id.userName)).perform(typeText("eu"), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos")))
+    }
+    // FALTA ESTE TEST
+    @Test
+    fun testUsuario() {
+        onView(withId(R.id.userName)).perform(typeText(""), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("")))
+    }
+    @Test
+    fun testUsuarioFormatoInvalido() {
+        onView(withId(R.id.userName)).perform(typeText("usuariInvalid#123"), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("El nombre de usuario sólo puede contener carácteres alfanuméricos o “_”, “-” y “.”")))
+    }
+    @Test
+    fun testUsuarioInvalido() {
+        onView(withId(R.id.userName)).perform(typeText("!usuariInvalid"), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("El nombre de usuario debe iniciar con una letra")))
+    }
+    @Test           // investigar como hacer el accion de caso correcto, de inicio session
+    fun testUsuarioValido() {
+        onView(withId(R.id.userName)).perform(typeText("usuari_Valid"), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("")))
+    }
+
+    @Test
     fun testEmailVacio() {
         onView(withId(R.id.userEmail)).perform(clearText())
         onView(withId(R.id.registerButton)).perform(click())
@@ -55,6 +94,7 @@ class ActivityRegistreUITest {
         onView(withId(R.id.userPswwdConfirm))
             .check(matches(hasErrorText("La contraseña de confirmación és obligatoria")))
     }
+
     @Test
     fun useAppContext() {
         // Context of the app under test.

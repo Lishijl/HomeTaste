@@ -2,8 +2,9 @@ package com.example.hometaste.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class ActivityRegistreViewModel {
+class ActivityRegistreViewModel : ViewModel() {
 
     private var _userName:String=""
     private var _email :String=""

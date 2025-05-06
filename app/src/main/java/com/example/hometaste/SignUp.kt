@@ -4,13 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.hometaste.databinding.ActivityMyRecipiesBinding
 import com.example.hometaste.databinding.ActivitySignUpBinding
+import com.example.hometaste.viewmodel.ActivityRegistreViewModel
 
 class SignUp : AppCompatActivity() {
+    private val model: ActivityRegistreViewModel by viewModels()
     private lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
