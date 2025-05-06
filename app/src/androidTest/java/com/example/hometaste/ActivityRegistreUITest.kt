@@ -28,11 +28,32 @@ class ActivityRegistreUITest {
     var activityRule = ActivityScenarioRule(SignUp::class.java)
 
     @Test
+    fun testUsuarioVacio() {
+        onView(withId(R.id.userName)).perform(clearText())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("El nombre de usuario és obligatorio")))
+    }
+    @Test
     fun testEmailVacio() {
         onView(withId(R.id.userEmail)).perform(clearText())
         onView(withId(R.id.registerButton)).perform(click())
         onView(withId(R.id.userEmail))
             .check(matches(hasErrorText("El correo electrónico és obligatorio")))
+    }
+    @Test
+    fun testPasswordVacio() {
+        onView(withId(R.id.userPswwd)).perform(clearText())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userPswwd))
+            .check(matches(hasErrorText("La contraseña és obligatoria")))
+    }
+    @Test
+    fun testConfirmPasswordVacio() {
+        onView(withId(R.id.userPswwdConfirm)).perform(clearText())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userPswwdConfirm))
+            .check(matches(hasErrorText("La contraseña de confirmación és obligatoria")))
     }
     @Test
     fun useAppContext() {
