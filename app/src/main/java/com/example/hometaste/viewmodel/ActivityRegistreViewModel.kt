@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ActivityRegistreViewModel: ViewModel()  {
+class ActivityRegistreViewModel : ViewModel() {
 
     private var _userName:String=""
     private var _email :String=""

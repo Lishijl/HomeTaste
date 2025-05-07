@@ -14,6 +14,7 @@ import com.example.hometaste.databinding.ActivitySignUpBinding
 import com.example.hometaste.viewmodel.ActivityRegistreViewModel
 
 class SignUp : AppCompatActivity() {
+    private val model: ActivityRegistreViewModel by viewModels()
     private lateinit var binding: ActivitySignUpBinding
     private val model: ActivityRegistreViewModel by viewModels()
 

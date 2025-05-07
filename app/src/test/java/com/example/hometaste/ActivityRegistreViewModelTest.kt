@@ -19,37 +19,37 @@ class ActivityRegistreViewModelTest {
      */
 
     @Test
-    fun `validar camp d’usuari buit i que retorni l’error corresponent`() {
+    fun `validar camp d'usuari buit i que retorni l'error corresponent`() {
         viewModel.updateUserName("")
         assertEquals("El nombre de usuario és obligatorio", viewModel.errorNomUsuari.value)
     }
 
     @Test
-    fun `validar camp d’usuari massa curt i que retorni l’error corresponent`() {
+    fun `validar camp d'usuari massa curt i que retorni l'error corresponent`() {
         viewModel.updateUserName("eu")
         assertEquals("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos.", viewModel.errorNomUsuari.value)
     }
 
     @Test
-    fun `validar camp d’usuari massa llarg i que retorni l’error corresponent`() {
+    fun `validar camp d'usuari massa llarg i que retorni l'error corresponent`() {
         viewModel.updateUserName("supercalifragilisticoespialidoso")
         assertEquals("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos.", viewModel.errorNomUsuari.value)
     }
 
     @Test
-    fun `validar camp d’usuari amb caràcters invàlids i que retorni l’error corresponent`() {
+    fun `validar camp d'usuari amb caràcters invàlids i que retorni l'error corresponent`() {
         viewModel.updateUserName("usuariInvalid#123")
         assertEquals("El nombre de usuario sólo puede contener carácteres alfanuméricos o “_”, “-” y “.”.", viewModel.errorNomUsuari.value)
     }
 
     @Test
-    fun `validar camp d’usuari que comenci per un carácter que no sigui lletra i que retorni l’error corresponent`() {
+    fun `validar camp d'usuari que comenci per un caràcter que no sigui lletra i que retorni l'error corresponent`() {
         viewModel.updateUserName("!usuariInvalid")
         assertEquals("El nombre de usuario debe iniciar con una letra.", viewModel.errorNomUsuari.value)
     }
 
     @Test
-    fun `validar camp d’usuari correcte`() {
+    fun `validar camp d'usuari correcte`() {
         viewModel.updateUserName("usuari_Valid")
         assertEquals("Entrada aceptada", viewModel.errorNomUsuari.value)
     }
@@ -60,7 +60,7 @@ class ActivityRegistreViewModelTest {
      */
 
     @Test
-    fun `validar camp email buit i que retorni l’error corresponent`() {
+    fun `validar camp email buit i que retorni l'error corresponent`() {
         viewModel.updateUserEmail("")
         assertEquals("El correo electrónico és obligatorio", viewModel.errorEmail.value)
     }

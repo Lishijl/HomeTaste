@@ -30,18 +30,75 @@ class ActivityRegistreUITest {
     var activityRule = ActivityScenarioRule(SignUp::class.java)
 
     @Test
+    fun testUsuarioVacio() {
+        onView(withId(R.id.userName)).perform(clearText())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("El nombre de usuario és obligatorio")))
+    }
+    @Test
+    fun testUsuarioCorto() {
+        onView(withId(R.id.userName)).perform(typeText("eu"), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos")))
+    }
+    // FALTA ESTE TEST
+    @Test
+    fun testUsuario() {
+        onView(withId(R.id.userName)).perform(typeText(""), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("")))
+    }
+    @Test
+    fun testUsuarioFormatoInvalido() {
+        onView(withId(R.id.userName)).perform(typeText("usuariInvalid#123"), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("El nombre de usuario sólo puede contener carácteres alfanuméricos o “_”, “-” y “.”")))
+    }
+    @Test
+    fun testUsuarioInvalido() {
+        onView(withId(R.id.userName)).perform(typeText("!usuariInvalid"), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("El nombre de usuario debe iniciar con una letra")))
+    }
+    @Test           // investigar como hacer el accion de caso correcto, de inicio session
+    fun testUsuarioValido() {
+        onView(withId(R.id.userName)).perform(typeText("usuari_Valid"), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userName))
+            .check(matches(hasErrorText("")))
+    }
+
+    @Test
     fun testEmailVacio() {
         onView(withId(R.id.userEmail)).perform(clearText())
         onView(withId(R.id.registerButton)).perform(click())
         onView(withId(R.id.userEmail))
             .check(matches(hasErrorText("El correo electrónico és obligatorio")))
     }
+    @Test
+    fun testPasswordVacio() {
+        onView(withId(R.id.userPswwd)).perform(clearText())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userPswwd))
+            .check(matches(hasErrorText("La contraseña és obligatoria")))
+    }
+    @Test
+    fun testConfirmPasswordVacio() {
+        onView(withId(R.id.userPswwdConfirm)).perform(clearText())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userPswwdConfirm))
+            .check(matches(hasErrorText("La contraseña de confirmación és obligatoria")))
+    }
 
     @Test
-    fun testEmailSinArroba() {
-        onView(withId(R.id.userEmail)).perform(clearText())
-        onView(withId(R.id.userEmail)).perform(typeText("usuario.gmail.com"), closeSoftKeyboard())
-        onView(withId(R.id.registerButton)).perform(click())
-        onView(withId(R.id.userEmail)).check(matches(hasErrorText("Introduce un correo electrónico válido, que contiene un “@”.")))
+    fun useAppContext() {
+        // Context of the app under test.
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("com.example.hometaste", appContext.packageName)
     }
 }
