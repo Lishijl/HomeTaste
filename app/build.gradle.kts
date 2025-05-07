@@ -71,6 +71,8 @@ dependencies {
     // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
+
+    // Integrations Test
     androidTestImplementation(libs.androidx.espresso.core)
 
     // Tests amb LiveData

@@ -3,6 +3,8 @@ package com.example.hometaste
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.clearText
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.hasErrorText
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -34,10 +36,12 @@ class ActivityRegistreUITest {
         onView(withId(R.id.userEmail))
             .check(matches(hasErrorText("El correo electrónico és obligatorio")))
     }
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.hometaste", appContext.packageName)
+    fun testEmailSinArroba() {
+        onView(withId(R.id.userEmail)).perform(clearText())
+        onView(withId(R.id.userEmail)).perform(typeText("usuario.gmail.com"), closeSoftKeyboard())
+        onView(withId(R.id.registerButton)).perform(click())
+        onView(withId(R.id.userEmail)).check(matches(hasErrorText("Introduce un correo electrónico válido, que contiene un “@”.")))
     }
 }
