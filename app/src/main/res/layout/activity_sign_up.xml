@@ -42,7 +42,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
                 android:backgroundTint="@android:color/transparent"
-                android:text="miguel94"
+                android:hint="miguel94"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
 
@@ -59,7 +59,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
                 android:backgroundTint="@android:color/transparent"
-                android:text="@string/jmiguel94_gmail_com"
+                android:hint="@string/jmiguel94_gmail_com"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
 
@@ -71,12 +71,12 @@
 
             <EditText
                 android:id="@+id/userPswwd"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:backgroundTint="@android:color/transparent"
                 android:inputType="textPassword"
-                android:text="@string/contrase_a123"
+                android:hint="@string/contrase_a123"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
@@ -89,12 +89,12 @@
 
             <EditText
                 android:id="@+id/userPswwdConfirm"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:backgroundTint="@android:color/transparent"
                 android:inputType="textPassword"
-                android:text="@string/contrase_a123"
+                android:hint="@string/contrase_a123"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor" />

@@ -47,16 +47,24 @@ class SignUp : AppCompatActivity() {
             }
         }
 
-        model.formularivalid.observe(this) { isValid ->
-            binding.registerButton.isEnabled = isValid
+        model.errorNomUsuari.observe(this) { errorUserName ->
+            binding.userName.setError(errorUserName)
         }
 
         model.errorEmail.observe(this) { errorUserEmail ->
             binding.userEmail.setError(errorUserEmail)
         }
 
-        model.errorNomUsuari.observe(this) { errorUserName ->
-            binding.userName.setError(errorUserName)
+        model.errorUserPassword.observe(this) { errorUserPsswd ->
+            binding.userPswwd.error = errorUserPsswd
+        }
+
+        model.errorConfirmPassword.observe(this) { errorUserPsswdConfirm ->
+            binding.userPswwdConfirm.error = errorUserPsswdConfirm
+        }
+
+        model.formularivalid.observe(this) { isValid ->
+            binding.registerButton.isEnabled = isValid
         }
     }
 

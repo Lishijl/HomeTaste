@@ -4,6 +4,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.clearText
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
@@ -39,8 +40,9 @@ class ActivityRegistreUITest {
 
         onView(withId(R.id.userName)).perform(typeText("usuari_Valid"), closeSoftKeyboard())
         onView(withId(R.id.userEmail)).perform(typeText("usuariValid@gmail.com"), closeSoftKeyboard())
-        onView(withId(R.id.userPswwd)).perform(typeText("M@yúsculas1"), closeSoftKeyboard())
-        onView(withId(R.id.userPswwdConfirm)).perform(typeText("M@yúsculas1"), closeSoftKeyboard())
+        // utilizo replaceText ya que el emulador da error con las mayúsculas
+        onView(withId(R.id.userPswwd)).perform(replaceText("M@yúsculas1"), closeSoftKeyboard())
+        onView(withId(R.id.userPswwdConfirm)).perform(replaceText("M@yúsculas1"), closeSoftKeyboard())
 
         // disponibilitat del botó
         onView(withId(R.id.registerButton)).check(matches(isEnabled()))
@@ -72,7 +74,7 @@ class ActivityRegistreUITest {
         onView(withId(R.id.userName)).perform(typeText("usuarioChristopherFlores"), closeSoftKeyboard())
         onView(withId(R.id.registerButton)).perform(click())
         onView(withId(R.id.userName))
-            .check(matches(hasErrorText("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos")))
+            .check(matches(hasErrorText("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos.")))
     }
     // 4
     @Test
@@ -80,7 +82,7 @@ class ActivityRegistreUITest {
         onView(withId(R.id.userName)).perform(typeText("usuariInvalid#123"), closeSoftKeyboard())
         onView(withId(R.id.registerButton)).perform(click())
         onView(withId(R.id.userName))
-            .check(matches(hasErrorText("El nombre de usuario sólo puede contener carácteres alfanuméricos o “_”, “-” y “.”")))
+            .check(matches(hasErrorText("El nombre de usuario sólo puede contener carácteres alfanuméricos o “_”, “-” y “.”.")))
     }
     // 5
     @Test
@@ -88,7 +90,7 @@ class ActivityRegistreUITest {
         onView(withId(R.id.userName)).perform(typeText("!usuariInvalid"), closeSoftKeyboard())
         onView(withId(R.id.registerButton)).perform(click())
         onView(withId(R.id.userName))
-            .check(matches(hasErrorText("El nombre de usuario debe iniciar con una letra")))
+            .check(matches(hasErrorText("El nombre de usuario debe iniciar con una letra.")))
     }
     // 6
     @Test           // investigar como hacer el accion de caso correcto, de inicio session

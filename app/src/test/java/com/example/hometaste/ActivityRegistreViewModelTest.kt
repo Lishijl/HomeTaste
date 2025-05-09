@@ -51,7 +51,7 @@ class ActivityRegistreViewModelTest {
     @Test
     fun `validar camp d'usuari correcte`() {
         viewModel.updateUserName("usuari_Valid")
-        assertEquals("Entrada aceptada", viewModel.errorNomUsuari.value)
+        assertEquals("", viewModel.errorNomUsuari.value)
     }
 
 
@@ -80,7 +80,7 @@ class ActivityRegistreViewModelTest {
     @Test
     fun `validar camp email amb format correcte`() {
         viewModel.updateUserEmail("usuari@gmail.com")
-        assertEquals("Entrada aceptada", viewModel.errorEmail.value)
+        assertEquals("", viewModel.errorEmail.value)
     }
 
 
@@ -106,7 +106,7 @@ class ActivityRegistreViewModelTest {
     @Test
     fun `valida contrasenya i retorna correcte quan té majúscules, minúscules, un numero, un símbol i 8 caracters`() {
         viewModel.updateUserPassword("MiNombre@123")
-        assertEquals("La contraseña pasa los filtros", viewModel.errorUserPassword.value)
+        assertEquals("", viewModel.errorUserPassword.value)
     }
 
     @Test
@@ -128,7 +128,7 @@ class ActivityRegistreViewModelTest {
         viewModel.updateUserPassword("M@yúsculas1")
         viewModel.updateConfirmUserPassword("M@yúsculas1")
 
-        assertEquals("Las contraseñas si coinciden", viewModel.errorConfirmPassword.value)
+        assertEquals("", viewModel.errorConfirmPassword.value)
     }
 
     /*
