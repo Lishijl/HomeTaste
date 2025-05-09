@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
 import com.example.hometaste.databinding.ActivityMyRecipiesBinding
 import com.example.hometaste.databinding.ActivitySignUpBinding
 import com.example.hometaste.viewmodel.ActivityRegistreViewModel
@@ -22,26 +23,32 @@ class SignUp : AppCompatActivity() {
         this.enableEdgeToEdge()
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        model.formularivalid.observe(this) { isValid ->
-            binding.registerButton.isEnabled = isValid
-        }
+
         binding.userName.addTextChangedListener {
             model.updateUserName(it.toString())
         }
+
         binding.userEmail.addTextChangedListener {
             model.updateUserEmail(it.toString())
         }
+
         binding.userPswwd.addTextChangedListener {
             model.updateUserPassword(it.toString())
         }
+
         binding.userPswwdConfirm.addTextChangedListener {
             model.updateConfirmUserPassword(it.toString())
         }
+
         binding.registerButton.setOnClickListener {
             if (model.formularivalid.value == true) {
                 Toast.makeText(this, "Registro completado correctamente", Toast.LENGTH_SHORT).show();
                 goToLogin(it);
             }
+        }
+
+        model.formularivalid.observe(this) { isValid ->
+            binding.registerButton.isEnabled = isValid
         }
 
         model.errorEmail.observe(this) { errorUserEmail ->
