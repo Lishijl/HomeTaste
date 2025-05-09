@@ -14,7 +14,6 @@ import com.example.hometaste.databinding.ActivitySignUpBinding
 import com.example.hometaste.viewmodel.ActivityRegistreViewModel
 
 class SignUp : AppCompatActivity() {
-    private val model: ActivityRegistreViewModel by viewModels()
     private lateinit var binding: ActivitySignUpBinding
     private val model: ActivityRegistreViewModel by viewModels()
 
@@ -28,8 +27,16 @@ class SignUp : AppCompatActivity() {
             model.updateUserEmail(it.toString())
         }
 
-        model.errorEmail.observe(this) { errorEmailUser ->
-            binding.userEmail.setError(errorEmailUser)
+        binding.userName.addTextChangedListener {
+            model.updateUserName(it.toString())
+        }
+
+        model.errorEmail.observe(this) { errorUserEmail ->
+            binding.userEmail.setError(errorUserEmail)
+        }
+
+        model.errorNomUsuari.observe(this) { errorUserName ->
+            binding.userName.setError(errorUserName)
         }
     }
 

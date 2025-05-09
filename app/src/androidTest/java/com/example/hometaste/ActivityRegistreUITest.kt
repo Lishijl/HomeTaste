@@ -38,10 +38,11 @@ class ActivityRegistreUITest {
     }
     @Test
     fun testUsuarioCorto() {
+        onView(withId(R.id.userName)).perform(clearText())
         onView(withId(R.id.userName)).perform(typeText("eu"), closeSoftKeyboard())
         onView(withId(R.id.registerButton)).perform(click())
         onView(withId(R.id.userName))
-            .check(matches(hasErrorText("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos")))
+            .check(matches(hasErrorText("El nombre de usuario debe tener entre 5 y 20 carácteres alfanuméricos.")))
     }
     // FALTA ESTE TEST
     @Test
