@@ -6,7 +6,10 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.ViewMatchers.hasErrorText
+import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
@@ -28,6 +31,23 @@ import org.junit.Assert.*
 class ActivityRegistreUITest {
     @get:Rule
     var activityRule = ActivityScenarioRule(SignUp::class.java)
+    // caso éxito de todos los campos
+    @Test
+    fun testRegistroCorrecto() {
+        Intents.init()
+
+        onView(withId(R.id.userName)).perform(typeText("usuari_Valid"), closeSoftKeyboard())
+        onView(withId(R.id.userEmail)).perform(typeText("usuariValid@gmail.com"), closeSoftKeyboard())
+        onView(withId(R.id.userPswwd)).perform(typeText("M@yúsculas1"), closeSoftKeyboard())
+        onView(withId(R.id.userPswwdConfirm)).perform(typeText("M@yúsculas1"), closeSoftKeyboard())
+
+        // disponibilitat del botó
+        onView(withId(R.id.registerButton)).check(matches(isEnabled()))
+        onView(withId(R.id.registerButton)).perform(click())
+
+        Intents.intended(IntentMatchers.hasComponent(Login::class.java.name))
+        Intents.release()
+    }
     // 1
     @Test
     fun testUsuarioVacio() {

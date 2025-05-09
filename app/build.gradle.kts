@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.support.annotations)
     implementation(libs.androidx.annotation)
+    implementation(libs.androidx.espresso.intents)
 
     // Test
     testImplementation(libs.junit)
