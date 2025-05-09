@@ -12,7 +12,7 @@ class ActivityRegistreViewModel : ViewModel() {
     private var _userConfirmPassword : String=""
 
     private val _formularivalid=MutableLiveData<Boolean>(false)
-    val  formularivalid:MutableLiveData<Boolean> = _formularivalid
+    val formularivalid:MutableLiveData<Boolean> = _formularivalid
 
     private val _errorNomUsuari=MutableLiveData<String>("")
     val errorNomUsuari:LiveData<String> = _errorNomUsuari
@@ -112,8 +112,8 @@ class ActivityRegistreViewModel : ViewModel() {
             _errorUserPassword.value = "La contraseña al menos debe tener 8 caracteres y contener una mayúscula, una minúscula, un número y un simbolo - / : ; & @ ! %"
             return
         }
-
-        _errorUserPassword.value = "La contraseña pasa los filtros"
+        // "" string buit, en test integracio
+        _errorUserPassword.value = ""
         validaForm()
     }
 
