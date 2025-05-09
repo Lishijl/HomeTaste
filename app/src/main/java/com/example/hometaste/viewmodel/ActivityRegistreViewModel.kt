@@ -112,8 +112,8 @@ class ActivityRegistreViewModel : ViewModel() {
             _errorUserPassword.value = "La contraseña al menos debe tener 8 caracteres y contener una mayúscula, una minúscula, un número y un simbolo - / : ; & @ ! %"
             return
         }
-
-        _errorUserPassword.value = "La contraseña pasa los filtros"
+        // "" string buit, en test integracio
+        _errorUserPassword.value = ""
         validaForm()
     }
 
