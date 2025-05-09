@@ -48,19 +48,35 @@ class SignUp : AppCompatActivity() {
         }
 
         model.errorNomUsuari.observe(this) { errorUserName ->
-            binding.userName.setError(errorUserName)
+            if (errorUserName.isNullOrBlank()) {
+                binding.userName.error=null
+            } else {
+                binding.userName.setError(errorUserName)
+            }
         }
 
         model.errorEmail.observe(this) { errorUserEmail ->
-            binding.userEmail.setError(errorUserEmail)
+            if (errorUserEmail.isNullOrBlank()) {
+                binding.userEmail.error=null
+            } else {
+                binding.userEmail.setError(errorUserEmail)
+            }
         }
 
         model.errorUserPassword.observe(this) { errorUserPsswd ->
-            binding.userPswwd.error = errorUserPsswd
+            if (errorUserPsswd.isNullOrBlank()) {
+                binding.userPswwd.error=null
+            } else {
+                binding.userPswwd.error = errorUserPsswd
+            }
         }
 
         model.errorConfirmPassword.observe(this) { errorUserPsswdConfirm ->
-            binding.userPswwdConfirm.error = errorUserPsswdConfirm
+            if (errorUserPsswdConfirm.isNullOrBlank()) {
+                binding.userPswwdConfirm.error=null
+            } else {
+                binding.userPswwdConfirm.error = errorUserPsswdConfirm
+            }
         }
 
         model.formularivalid.observe(this) { isValid ->
